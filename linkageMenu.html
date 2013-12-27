@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .linkagemenu{width:250px;height:300px; display: inline-block;*display: inline;*zoom:1;margin-right:10px;border:1px solid #ccc; list-style: none;padding:0;margin:0; overflow:auto;}
+        .linkagemenu li { font-size: 12px;height:24px; line-height:24px; padding:0 10px; cursor: pointer;}
+        .linkagemenu li:hover,.linkagemenu li.active{ background:brown;color:#fff;}
+    </style>
+</head>
+<body>
+    <select name="catid" id="J_province" data-init="['13','180','1545']">
+        <option value="">请选择</option>
+    </select><select name="catid" id="J_city">
+        <option value="">请选择</option>
+    </select><select name="catid" id="J_area">
+        <option value="">请选择</option>
+    </select>
+    <ul data-name="catid" data-value="" data-init="['13','180','1545']" id="J_province_1" class="linkagemenu"></ul>
+    <ul data-name="catid" data-value="" id="J_city_1" class="linkagemenu"></ul>
+    <ul data-name="catid" data-value="" id="J_area_1" class="linkagemenu"></ul>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/linkageMenu.js"></script>
+    <script type="text/javascript">
+        $.linkageMenu({
+            target:['J_province','J_city','J_area'],
+            url:['data.php?aa=1','data.php','data.php']
+        });
+
+        $.linkageMenu({
+            target:['J_province_1','J_city_1','J_area_1'],
+            url:['data.php','data.php','data.php'],
+            callback:function(obj,data,name,v){
+                var html = '';
+                $.each(data,function(i,item){
+                    html+='<li data-value="'+item.id+'" title="'+item.name+'">'+item.name+'</li>';
+                });
+                obj.length > 0 && (obj.html(html));
+            },
+            setValueFn:function(obj,v){
+                obj.children().each(function(){
+                    if(v == $(this).data('value')) $(this).addClass('active');
+                });
+            },
+            change:function(){
+                console.log($(this).data('value'));
+            }
+        });
+
+        $('ul.linkagemenu').on('click','li',function(){
+            $(this).addClass('active').siblings().removeClass('active');
+        })
+    </script>
+</body>
+</html>
