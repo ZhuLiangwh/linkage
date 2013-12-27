@@ -1,5 +1,5 @@
 <?php
-    $path = 'json/';
+    $path = 'dataJson/';
     $catid = !isset($_GET['catid']) || $_GET['catid'] == 'null'  ? 1 : intval($_GET['catid']);
     if (is_file($path.$catid.'.json')){
         $json = file_get_contents($path.$catid.'.json');
