@@ -108,7 +108,7 @@
                         //setTimeout for ie6
                         setTimeout(function(){
                             var v = D.shift(),el = $('#'+set.target[n]),sn = el[0].name || el.data('name');
-                            v　!= '' &&　loadData(set.url[++n],sn,v,n,function(obj,v){
+                            (v　!= '') &&　loadData(set.url[++n],sn,v,n,function(obj,v){
                                 setValue(obj,D[0],n)
                                 D.length > 1 && (n < showLevel-1 ) && fn();
                             });

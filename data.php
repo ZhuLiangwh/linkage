@@ -5,6 +5,6 @@
         $json = file_get_contents($path.$catid.'.json');
     }else{
         $json = '';
-    }
+    };
     echo $json;
 ?>
